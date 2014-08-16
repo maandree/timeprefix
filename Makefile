@@ -8,26 +8,19 @@
 PREFIX ?= /usr
 # The command path excluding prefix.
 BIN ?= /bin
-# The library path excluding prefix.
-LIB ?= /lib
-# The executable library path excluding prefix.
-LIBEXEC ?= /libexec
 # The resource path excluding prefix.
 DATA ?= /share
 # The command path including prefix.
 BINDIR ?= $(PREFIX)$(BIN)
-# The library path including prefix.
-LIBDIR ?= $(PREFIX)$(LIB)
-# The executable library path including prefix.
-LIBEXECDIR ?= $(PREFIX)$(LIBEXEC)
 # The resource path including prefix.
 DATADIR ?= $(PREFIX)$(DATA)
-# The generic documentation path including prefix.
-DOCDIR ?= $(DATADIR)/doc
-# The info manual documentation path including prefix.
-INFODIR ?= $(DATADIR)/info
 # The license base path including prefix.
 LICENSEDIR ?= $(DATADIR)/licenses
+
+# The name of the command as it should be installed
+COMMAND ?= timeprefix
+# The name of the package as it should be installed
+PKGNAME ?= timeprefix
 
 
 # Optimisation level (and debug flags.)
@@ -61,6 +54,21 @@ bin/timeprefix: obj/timeprefix.o
 obj/%.o: src/%.c
 	@mkdir -p obj
 	$(CC) -std=$(STD) $(OPTIMISE) $(WARN) $(CPPFLAGS) $(CFLAGS) -c -o $@ $<
+
+
+.PHONY: install
+install: bin/timeprefix
+	install -dm755 -- "$(DESTDIR)$(BINDIR)"
+	install -m755 bin/timeprefix -- "$(DESTDIR)$(BINDIR)/$(COMMAND)"
+	install -dm755 -- "$(DESTDIR)$(LICENSEDIR)/$(PKGNAME)"
+	install -m644 LICENSE COPYING -- "$(DESTDIR)$(LICENSEDIR)/$(PKGNAME)"
+
+.PHONY: uninstall
+uninstall:
+	-rm -- "$(DESTDIR)$(LICENSEDIR)/$(PKGNAME)/COPYING"
+	-rm -- "$(DESTDIR)$(LICENSEDIR)/$(PKGNAME)/LICENSE"
+	-rmdir -- "$(DESTDIR)$(LICENSEDIR)/$(PKGNAME)"
+	-rm -- "$(DESTDIR)$(BINDIR)/$(COMMAND)"
 
 
 .PHONY: clean
