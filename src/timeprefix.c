@@ -44,7 +44,7 @@ static void printline(const char* line)
 }
 
 
-int main(int argc, char** argv)
+int main(void)
 {
   size_t buf_size = 512;
   char* buf = NULL;
