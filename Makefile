@@ -11,6 +11,10 @@ timeprefix: timeprefix.o
 .c.o:
 	$(CC) -c -o $@ $< $(CPPFLAGS) $(CFLAGS)
 
+check: timeprefix
+	test "$$(printf '%s\n' a b c d e | ./timeprefix | sed 's/[0-9]/0/g' | md5sum | tr -Cd '[:xdigit:]\n')" \
+		= "3f1efed82f846e18973bd016fe5aeba4"
+
 install: timeprefix
 	mkdir -p -- "$(DESTDIR)$(PREFIX)/bin"
 	mkdir -p -- "$(DESTDIR)$(PREFIX)/share/licenses/timeprefix"
@@ -30,4 +34,4 @@ clean:
 .SUFFIXES:
 .SUFFIXES: .o .c
 
-.PHONY: all install uninstall clean
+.PHONY: all check install uninstall clean
