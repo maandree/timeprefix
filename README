@@ -1,6 +1,15 @@
-A small program to prefixes the current time a line
-is written to its stdin.
+NAME
+	timeprefix - Prefix the current time to each line
 
-If you use this to generate log files, you can use
-`sort --merge` to create on log file from multiple
-log files.
+SYNOPSIS
+	timeprefix
+
+DESCRIPTION
+	timeprefix ignores all arguments. It reads stdin line by line
+	and prefix the current time (at the point the line has been
+	fully read) to each line and prints the prefixed line to stdout.
+
+	The timestamp is written in both decimal boot time and
+	human-readable real time (in UTC), with with boot time first so
+	that muliple generated log files can merged into one with
+	sort --merge.
