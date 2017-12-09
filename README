@@ -4,4 +4,3 @@ is written to its stdin.
 If you use this to generate log files, you can use
 `sort --merge` to create on log file from multiple
 log files.
-

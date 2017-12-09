@@ -1,11 +1,6 @@
-_/
-bin/
-obj/
-\#*\#
-.*
-!.git*
 *~
+*\#*
 *.o
 *.out
 *.su
-*.gch
+/timeprefix
