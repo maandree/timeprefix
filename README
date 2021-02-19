@@ -5,9 +5,9 @@ SYNOPSIS
 	timeprefix
 
 DESCRIPTION
-	timeprefix ignores all arguments. It reads stdin line by line
-	and prefix the current time (at the point the line has been
-	fully read) to each line and prints the prefixed line to stdout.
+	timeprefix  reads stdin line by line and prefix the current time
+	(at the point the line has been fully read) to each line and
+	prints the prefixed line to stdout.
 
 	The timestamp is written in both decimal boot time and
 	human-readable real time (in UTC), with with boot time first so
