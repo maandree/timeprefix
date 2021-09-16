@@ -17,15 +17,12 @@ check: timeprefix
 
 install: timeprefix
 	mkdir -p -- "$(DESTDIR)$(PREFIX)/bin"
-	mkdir -p -- "$(DESTDIR)$(PREFIX)/share/licenses/timeprefix"
 	mkdir -p -- "$(DESTDIR)$(MANPREFIX)/man1"
 	cp -- timeprefix "$(DESTDIR)$(PREFIX)/bin/"
-	cp -- LICENSE "$(DESTDIR)$(PREFIX)/share/licenses/timeprefix/"
 	cp -- timeprefix.1 "$(DESTDIR)$(MANPREFIX)/man1/"
 
 uninstall:
 	-rm -f -- "$(DESTDIR)$(PREFIX)/bin/timeprefix"
-	-rm -rf -- "$(DESTDIR)$(PREFIX)/share/licenses/timeprefix"
 	-rm -- "$(DESTDIR)$(MANPREFIX)/man1/timeprefix.1"
 
 clean:
