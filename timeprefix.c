@@ -1,19 +1,34 @@
 /* See LICENSE file for copyright and license details. */
-#include <sys/timex.h>
+#ifdef __linux__
+# include <sys/timex.h>
+# define HAVE_ADJTIMEX
+#endif
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+
+#ifndef CLOCK_MONOTONIC_RAW
+# define CLOCK_MONOTONIC_RAW CLOCK_MONOTONIC
+#endif
+#ifndef CLOCK_BOOTTIME
+# define CLOCK_BOOTTIME CLOCK_MONOTONIC_RAW
+#endif
 
 
 static void
 printline(const char *line)
 {
+#ifdef HAVE_ADJTIMEX
 	static struct timex timex; /* static to zero initialise it */
+	int r;
+#else
+	struct timespec walltime;
+#endif
 	struct timespec boottime;
 	struct tm *utctime;
-	int r;
 
 	clock_gettime(CLOCK_BOOTTIME, &boottime);
+#ifdef HAVE_ADJTIMEX
 	r = adjtimex(&timex);
 	if (timex.time.tv_sec % (24 * 60 * 60) == 0) {
 		if (r == TIME_INS) {
@@ -32,6 +47,10 @@ printline(const char *line)
 	} else {
 		utctime = gmtime(&timex.time.tv_sec);
 	}
+#else
+	clock_gettime(CLOCK_REALTIME, &walltime);
+	utctime = gmtime(&walltime.tv_sec);
+#endif
 
 	printf("[%010lu.%04lu %i-%02i-%02i %02i:%02i:%02i UTC] %s",
 	       boottime.tv_sec, boottime.tv_nsec / 100000,

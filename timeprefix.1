@@ -18,3 +18,12 @@ can merged into one with
 .PP
 .B timeprefix
 also marks when the program started and terminated.
+.SH BUGS
+.B timeprefix
+will use a clock that is supposed to be monotonic,
+but is not necessarily system-wide, if
+.I CLOCK_BOOTTIME
+is not defined on the system.
+.PP
+.B timeprefix
+only supports leap seconds on Linux.
