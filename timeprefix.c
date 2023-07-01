@@ -52,8 +52,8 @@ printline(const char *line)
 	utctime = gmtime(&walltime.tv_sec);
 #endif
 
-	printf("[%010lu.%04lu %i-%02i-%02i %02i:%02i:%02i UTC] %s",
-	       boottime.tv_sec, boottime.tv_nsec / 100000,
+	printf("[%010lli.%04li %i-%02i-%02i %02i:%02i:%02i UTC] %s",
+	       (long long int)boottime.tv_sec, boottime.tv_nsec / 100000,
 	       utctime->tm_year + 1900, utctime->tm_mon + 1, utctime->tm_mday,
 	       utctime->tm_hour, utctime->tm_min, utctime->tm_sec,
 	       line);
