@@ -5,7 +5,7 @@ SYNOPSIS
 	timeprefix
 
 DESCRIPTION
-	timeprefix  reads stdin line by line and prefix the current time
+	timeprefix reads stdin line by line and prefix the current time
 	(at the point the line has been fully read) to each line and
 	prints the prefixed line to stdout.
 
