@@ -26,7 +26,7 @@ uninstall:
 	-rm -- "$(DESTDIR)$(MANPREFIX)/man1/timeprefix.1"
 
 clean:
-	-rm -f -- timeprefix *.o
+	-rm -f -- timeprefix *.o *.su
 
 .SUFFIXES:
 .SUFFIXES: .o .c

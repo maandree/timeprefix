@@ -5,16 +5,16 @@ timeprefix \- Prefix the current time to each line
 .B timeprefix
 .SH DESCRIPTION
 .B timeprefix
- reads stdin line by line and prefix the current time
+ reads stdin line by line and prefixes the current time
 (at the point the line has been fully read) to each
 line and prints the prefixed line to stdout.
 .PP
 The timestamp is written in both decimal boot time
 and human-readable real time (in UTC), with the
-boot time first so that muliple generated log files
-can merged into one with
+boot time first so that multiple generated log files
+can be merged into one with
 .B sort
-.BR --merge .
+.BR -m .
 .PP
 .B timeprefix
 also marks when the program started and terminated.

@@ -5,13 +5,13 @@ SYNOPSIS
 	timeprefix
 
 DESCRIPTION
-	timeprefix reads stdin line by line and prefix the current time
-	(at the point the line has been fully read) to each line and
-	prints the prefixed line to stdout.
+	timeprefix reads stdin line by line and prefixes the current
+	time (at the point the line has been fully read) to each line
+	and prints the prefixed line to stdout.
 
 	The timestamp is written in both decimal boot time and
 	human-readable real time (in UTC), with the boot time first so
-	that muliple generated log files can merged into one with
-	sort --merge.
+	that multiple generated log files can be merged into one with
+	sort -m.
 
 	timeprefix also marks when the program started and terminated.
